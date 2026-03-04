@@ -142,4 +142,4 @@ digraph scope {
 
 ## Execution
 
-Once the plan is approved, follow the plan-execution skill to execute it step-by-step.
+Once the plan is approved, follow the mav-plan-execution skill to execute it step-by-step.
