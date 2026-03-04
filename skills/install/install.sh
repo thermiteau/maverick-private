@@ -74,5 +74,45 @@ else:
 
 update_permissions
 
+# --- 6. Create default system config ---
+
+MAVERICK_DIR="$HOME/.maverick"
+MAVERICK_CONFIG="$MAVERICK_DIR/settings.json"
+
+if [[ -f "$MAVERICK_CONFIG" ]]; then
+  echo "System config already exists at $MAVERICK_CONFIG."
+else
+  mkdir -p "$MAVERICK_DIR"
+  cat > "$MAVERICK_CONFIG" <<'CONFIGEOF'
+{
+  "aws": {
+    "ec2_description": "Maverick pre-configured instance",
+    "ec2_iam_profile": "",
+    "ec2_instance_type": "t3.medium",
+    "ec2_key_pair": "",
+    "ec2_security_group": "",
+    "ec2_ssm_parameter": "/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+    "ec2_subnet": "",
+    "parameter_store_arn": "",
+    "region": "us-east-1",
+    "sqs_max_receive_count": 3,
+    "sqs_message_retention": 345600,
+    "sqs_queue_url": "",
+    "sqs_visibility_timeout": 3600
+  },
+  "gcp": {},
+  "worker": {
+    "webhook_label": "maverik-solo",
+    "cloudwatch_log_group": "/maverick/worker",
+    "prompt_template": "Complete GitHub issue #{issue_number} using the maverick-solo skill",
+    "work_dir": "/tmp/maverick-work",
+    "user": "maverick"
+  }
+}
+CONFIGEOF
+  echo "Created default system config at $MAVERICK_CONFIG."
+  echo "Edit it with your AWS/GCP values as needed."
+fi
+
 echo ""
 echo "Done."

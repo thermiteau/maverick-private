@@ -22,7 +22,7 @@ For each topic entry in `topics.json`:
 3. Run the scan process (below) for that topic
 4. Write the project skill to `docs/maverick/skills/<topic>/SKILL.md`
 
-Use the `subagents` skill or parallel agents to process multiple topics concurrently when possible.
+Use subagents or parallel agents to process multiple topics concurrently when possible.
 
 ## Input
 
