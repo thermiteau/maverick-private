@@ -1,5 +1,5 @@
 ---
-name: do-issue-solo
+name: $SKILL_NAME
 description: Work on a GitHub issue end-to-end autonomously, only pausing when blocked or when clarification is needed.
 argument-hint: issue number (e.g., 123)
 disable-model-invocation: false
