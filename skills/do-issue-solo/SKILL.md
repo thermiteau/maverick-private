@@ -2,8 +2,8 @@
 name: do-issue-solo
 description: Work on a GitHub issue end-to-end autonomously, only pausing when blocked or when clarification is needed.
 argument-hint: issue number (e.g., 123)
-disable-model-invocation: false
 user-invocable: true
+disable-model-invocation: false
 ---
 
 **Depends on:** mav-scope-boundaries, mav-git-workflow, mav-github-issue-workflow, create-solution-design, create-implementation-plan, mav-plan-execution, mav-local-verification, mav-bp-cicd, mav-claude-code-recovery, mav-bp-logging, mav-bp-alerting, mav-systematic-debugging, pullrequest-review

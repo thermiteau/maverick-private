@@ -1,7 +1,6 @@
 ---
 name: mav-scope-boundaries
 description: Defines what Claude Code must refuse to do without explicit authorisation. Covers infrastructure, auth, destructive git, and production systems. Applied automatically to all workflows.
-user-invocable: false
 disable-model-invocation: false
 ---
 

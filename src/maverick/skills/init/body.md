@@ -1,9 +1,3 @@
----
-name: $SKILL_NAME
-description: $DESCRIPTION
-user-invocable: $USER_INVOCABLE
-disable-model-invocation: $DISABLE_MODEL_INVOCATION
----
 
 # Init Maverick Project
 

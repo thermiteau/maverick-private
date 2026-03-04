@@ -1,5 +1,5 @@
-from skills.models import AgentConfig
-from skills.names import MAV_SCOPE_BOUNDARIES, TECH_DOCS
+from maverick.models import AgentConfig
+from maverick.names import MAV_SCOPE_BOUNDARIES, TECH_DOCS
 
 CONFIG = AgentConfig(
     name="tech-docs-writer",

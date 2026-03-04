@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import (
+from maverick.models import SkillConfig
+from maverick.names import (
     CREATE_IMPLEMENTATION_PLAN,
     CREATE_SOLUTION_DESIGN,
     DO_ISSUE_SOLO,

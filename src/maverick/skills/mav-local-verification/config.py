@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import MAV_LOCAL_VERIFICATION
+from maverick.models import SkillConfig
+from maverick.names import MAV_LOCAL_VERIFICATION
 
 CONFIG = SkillConfig(
     name=MAV_LOCAL_VERIFICATION,

@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import CREATE_SOLUTION_DESIGN
+from maverick.models import SkillConfig
+from maverick.names import CREATE_SOLUTION_DESIGN
 
 CONFIG = SkillConfig(
     name=CREATE_SOLUTION_DESIGN,

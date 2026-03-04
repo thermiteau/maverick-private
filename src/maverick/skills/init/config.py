@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import INIT
+from maverick.models import SkillConfig
+from maverick.names import INIT
 
 CONFIG = SkillConfig(
     name=INIT,

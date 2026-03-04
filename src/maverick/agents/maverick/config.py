@@ -1,5 +1,5 @@
-from skills.models import AgentConfig
-from skills.names import INIT, INSTALL
+from maverick.models import AgentConfig
+from maverick.names import INIT, INSTALL
 
 CONFIG = AgentConfig(
     name="maverick",

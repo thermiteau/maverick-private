@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import MAV_SYSTEMATIC_DEBUGGING
+from maverick.models import SkillConfig
+from maverick.names import MAV_SYSTEMATIC_DEBUGGING
 
 CONFIG = SkillConfig(
     name=MAV_SYSTEMATIC_DEBUGGING,

@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import MAV_SCOPE_BOUNDARIES
+from maverick.models import SkillConfig
+from maverick.names import MAV_SCOPE_BOUNDARIES
 
 CONFIG = SkillConfig(
     name=MAV_SCOPE_BOUNDARIES,

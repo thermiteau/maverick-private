@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import MAV_BP_CICD_GITLAB
+from maverick.models import SkillConfig
+from maverick.names import MAV_BP_CICD_GITLAB
 
 CONFIG = SkillConfig(
     name=MAV_BP_CICD_GITLAB,

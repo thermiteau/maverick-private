@@ -2,7 +2,6 @@
 name: init
 description: Initialise a project for use with Maverick — creates the .maverick/ directory and default project config.
 user-invocable: true
-disable-model-invocation: true
 ---
 
 # Init Maverick Project

@@ -6,10 +6,10 @@ import importlib.util
 import json
 from pathlib import Path
 
-from skills.models import TopicConfig
-from skills.registry import OUTPUT_DIR
+from maverick.models import TopicConfig
+from maverick.registry import SKILLS_OUTPUT_DIR
 
-TEMPLATES_DIR = Path(__file__).resolve().parent
+TEMPLATES_DIR = Path(__file__).resolve().parent / "skills"
 
 
 def _load_topics(templates_dir: Path = TEMPLATES_DIR) -> list[TopicConfig]:
@@ -21,7 +21,7 @@ def _load_topics(templates_dir: Path = TEMPLATES_DIR) -> list[TopicConfig]:
     return module.TOPICS
 
 
-def generate_topics_json(output_dir: Path = OUTPUT_DIR) -> Path:
+def generate_topics_json(output_dir: Path = SKILLS_OUTPUT_DIR) -> Path:
     """Generate topics.json from the upskill topic configs."""
     topics = _load_topics()
     entries = [

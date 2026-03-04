@@ -1,5 +1,5 @@
-from skills.models import AgentConfig
-from skills.names import MAV_BP_ALERTING, MAV_BP_LOGGING, MAV_SCOPE_BOUNDARIES
+from maverick.models import AgentConfig
+from maverick.names import MAV_BP_ALERTING, MAV_BP_LOGGING, MAV_SCOPE_BOUNDARIES
 
 CONFIG = AgentConfig(
     name="code-reviewer",

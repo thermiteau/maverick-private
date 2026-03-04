@@ -1,5 +1,5 @@
-from skills.models import AgentConfig
-from skills.names import CREATE_SOLUTION_DESIGN, MAV_GITHUB_ISSUE_WORKFLOW, MAV_SCOPE_BOUNDARIES
+from maverick.models import AgentConfig
+from maverick.names import CREATE_SOLUTION_DESIGN, MAV_GITHUB_ISSUE_WORKFLOW, MAV_SCOPE_BOUNDARIES
 
 CONFIG = AgentConfig(
     name="issue-analyst",

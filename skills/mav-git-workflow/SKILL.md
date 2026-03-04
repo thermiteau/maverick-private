@@ -1,7 +1,6 @@
 ---
 name: mav-git-workflow
 description: Git branching strategy, commit conventions, merge conflict handling, and branch lifecycle. Implements a simplified Gitflow with protected branches and conventional commits.
-user-invocable: false
 disable-model-invocation: false
 ---
 

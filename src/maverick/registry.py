@@ -4,14 +4,14 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+from string import Template
 from typing import Any
 
-from skills.generator import SkillGenerator
-from skills.models import AgentConfig, GlobalConfig, SkillConfig
+from maverick.models import AgentConfig, GlobalConfig, SkillConfig
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-TEMPLATES_DIR = Path(__file__).resolve().parent
-AGENTS_TEMPLATES_DIR = PROJECT_ROOT / "src" / "agents"
+SKILLS_TEMPLATES_DIR = Path(__file__).resolve().parent / "skills"
+AGENTS_TEMPLATES_DIR = Path(__file__).resolve().parent / "agents"
 SKILLS_OUTPUT_DIR = PROJECT_ROOT / "skills"
 AGENTS_OUTPUT_DIR = PROJECT_ROOT / "agents"
 
@@ -34,7 +34,7 @@ def _load_config(config_path: Path) -> Any:
 # Skills
 # ---------------------------------------------------------------------------
 
-def discover_skills(templates_dir: Path = TEMPLATES_DIR) -> list[SkillConfig]:
+def discover_skills(templates_dir: Path = SKILLS_TEMPLATES_DIR) -> list[SkillConfig]:
     """Find all skill directories that contain a config.py and load them."""
     return [
         _load_config(p)
@@ -42,39 +42,60 @@ def discover_skills(templates_dir: Path = TEMPLATES_DIR) -> list[SkillConfig]:
     ]
 
 
+def _build_skill_frontmatter(skill: SkillConfig) -> str:
+    """Build YAML frontmatter from a SkillConfig."""
+    lines = ["---"]
+    lines.append(f"name: {skill.name}")
+
+    if skill.description:
+        lines.append(f"description: {skill.description}")
+    if skill.argument_hint:
+        lines.append(f"argument-hint: {skill.argument_hint}")
+    if skill.user_invocable:
+        lines.append("user-invocable: true")
+    if not skill.disable_model_invocation:
+        lines.append("disable-model-invocation: false")
+    if skill.allowed_tools:
+        lines.append(f"allowed-tools: {', '.join(skill.allowed_tools)}")
+    if skill.model:
+        lines.append(f"model: {skill.model}")
+    if skill.context:
+        lines.append(f"context: {skill.context}")
+    if skill.agent:
+        lines.append(f"agent: {skill.agent}")
+
+    lines.append("---")
+    return "\n".join(lines)
+
+
 def render_skill(
     skill: SkillConfig,
     global_config: GlobalConfig = GLOBAL_CONFIG,
-    templates_dir: Path = TEMPLATES_DIR,
+    templates_dir: Path = SKILLS_TEMPLATES_DIR,
     output_dir: Path = SKILLS_OUTPUT_DIR,
 ) -> Path:
-    """Render a single skill template into its SKILL.md."""
-    generator = SkillGenerator(templates_dir / skill.name)
-    context: dict[str, str] = {
-        **global_config.extra_context,
-        **skill.extra_context,
-        "SKILL_NAME": skill.name,
-        "DESCRIPTION": skill.description or "",
-        "USER_INVOCABLE": str(skill.user_invocable).lower(),
-        "DISABLE_MODEL_INVOCATION": str(skill.disable_model_invocation).lower(),
-    }
-    if skill.argument_hint:
-        context["ARGUMENT_HINT"] = skill.argument_hint
+    """Render a single skill from its config and body template."""
+    body_path = templates_dir / skill.name / "body.md"
+    body = body_path.read_text()
+
+    # Substitute body-level variables (e.g. $DEPENDS_ON, extra_context)
+    context: dict[str, str] = {**global_config.extra_context, **skill.extra_context}
     if skill.depends_on:
         context["DEPENDS_ON"] = ", ".join(skill.depends_on)
-    if skill.allowed_tools:
-        context["ALLOWED_TOOLS"] = ", ".join(skill.allowed_tools)
-    return generator.render(
-        template_name="SKILL.md.template",
-        output_name="SKILL.md",
-        output_dir=output_dir / skill.name,
-        context=context,
-    )
+    if context:
+        body = Template(body).safe_substitute(context)
+
+    frontmatter = _build_skill_frontmatter(skill)
+    skill_output_dir = output_dir / skill.name
+    skill_output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = skill_output_dir / "SKILL.md"
+    output_path.write_text(frontmatter + "\n" + body)
+    return output_path
 
 
 def render_all_skills(
     global_config: GlobalConfig = GLOBAL_CONFIG,
-    templates_dir: Path = TEMPLATES_DIR,
+    templates_dir: Path = SKILLS_TEMPLATES_DIR,
     output_dir: Path = SKILLS_OUTPUT_DIR,
 ) -> list[Path]:
     """Discover all skill configs and render their templates."""

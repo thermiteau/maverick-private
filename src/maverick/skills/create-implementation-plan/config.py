@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import CREATE_IMPLEMENTATION_PLAN
+from maverick.models import SkillConfig
+from maverick.names import CREATE_IMPLEMENTATION_PLAN
 
 CONFIG = SkillConfig(
     name=CREATE_IMPLEMENTATION_PLAN,

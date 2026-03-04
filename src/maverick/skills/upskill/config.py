@@ -1,5 +1,5 @@
-from skills.models import SkillConfig, TopicConfig
-from skills.names import (
+from maverick.models import SkillConfig, TopicConfig
+from maverick.names import (
     MAV_BP_ALERTING,
     MAV_BP_CICD,
     MAV_BP_INTEGRATION_TESTING,

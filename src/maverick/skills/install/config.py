@@ -1,5 +1,5 @@
-from skills.models import SkillConfig
-from skills.names import INSTALL
+from maverick.models import SkillConfig
+from maverick.names import INSTALL
 
 CONFIG = SkillConfig(
     name=INSTALL,

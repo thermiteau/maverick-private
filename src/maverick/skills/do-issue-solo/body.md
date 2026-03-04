@@ -1,10 +1,3 @@
----
-name: $SKILL_NAME
-description: $DESCRIPTION
-argument-hint: $ARGUMENT_HINT
-disable-model-invocation: $DISABLE_MODEL_INVOCATION
-user-invocable: $USER_INVOCABLE
----
 
 **Depends on:** $DEPENDS_ON
 
