@@ -6,36 +6,39 @@ disable-model-invocation: true
 user-invocable: true
 ---
 
-**Depends on:** scope-boundaries, git-workflow, github-issue-workflow, solution-design, implementation-plan, plan-execution, local-verification, cicd-integration, claude-code-recovery, logging-bestpractice, alerting-bestpractice, systematic-debugging, receiving-code-review
+**Depends on:** scope-boundaries, git-workflow, github-issue-workflow, create-solution-design, create-implementation-plan, plan-execution, local-verification, cicd-bestpractice, claude-code-recovery, logging-bestpractice, alerting-bestpractice, systematic-debugging, pullrequest-review
 
 # Work on GitHub Issue (Guided)
 
 Work on GitHub issue `$ARGUMENTS` with human approval gates before implementation begins. Follow every phase in order. Do not skip phases.
 
-## Phase 1: Understand the Issue
+## Phase 1-2: Understand the Issue and Solution Design (subagent)
+
+Run Phases 1 and 2 as a subagent to keep the main context window clean for implementation.
 
 1. Initialise the issue state file per the github-issue-workflow skill.
-2. Read the full issue:
-   ```
-   gh issue view $ARGUMENTS --json title,body,labels,assignees,milestone,comments,state
-   ```
-3. Summarise the issue in 3-5 bullet points: what is being requested, why it matters, and any constraints or acceptance criteria.
-4. If the issue is ambiguous or missing critical information, ask the user clarifying questions before proceeding. Do not guess at requirements.
-5. Update phase to `understand` in the state file.
+2. Dispatch the **issue-analyst** agent with:
+   - Issue number: `$ARGUMENTS`
+   - Mode: `guided`
+3. When the agent returns, verify:
+   - `.claude/issue-state.json` has `phase` set to `design`
+   - `.claude/issue-state.json` has `comments.design` set to a comment ID
+4. If the agent flagged ambiguities, ask the user clarifying questions before proceeding.
+5. **Present the design to the user for review. Do not proceed until approved.**
+6. If the user requests changes, re-dispatch the **issue-analyst** agent with the revision context and repeat from step 3.
 
-## Phase 2: Solution Design
+## Phase 3: Implementation Plan (subagent)
 
-1. Follow the solution-design skill to explore the codebase and produce a design.
-2. **Present the design to the user for review. Do not proceed until approved.**
-3. After approval, post the design as a comment on the issue per the github-issue-workflow skill (post design comment pattern).
-4. Update phase to `design` in the state file.
+Run Phase 3 as a subagent to keep the main context window clean for implementation.
 
-## Phase 3: Implementation Plan
-
-1. Follow the task-decomposition skill to break the approved design into ordered implementation steps.
-2. **Present the plan to the user for approval. Do not proceed until approved.**
-3. After approval, post the plan as a comment on the issue per the github-issue-workflow skill (post plan comment pattern).
-4. Update phase to `plan` in the state file.
+1. Dispatch the **issue-planner** agent with:
+   - Issue number: `$ARGUMENTS`
+   - Design comment ID from `.claude/issue-state.json`
+2. When the agent returns, verify:
+   - `.claude/issue-state.json` has `phase` set to `plan`
+   - `.claude/issue-state.json` has `comments.plan` set to a comment ID
+3. **Present the plan to the user for approval. Do not proceed until approved.**
+4. If the user requests changes, re-dispatch the **issue-planner** agent with the revision context and repeat from step 2.
 
 ## Phase 4: Create Branch
 
@@ -56,7 +59,7 @@ Work on GitHub issue `$ARGUMENTS` with human approval gates before implementatio
 1. Dispatch the code-reviewer agent with the issue requirements and the diff (`git diff develop...HEAD`).
 2. The reviewer performs two-stage review: spec compliance first, then code quality.
 3. If spec compliance fails, stop — fix the gaps before requesting re-review.
-4. Process code quality feedback per the receiving-code-review skill:
+4. Process code quality feedback per the pullrequest-review skill:
    - Read all items before acting.
    - Clarify unclear items before implementing any.
    - Verify each suggestion against the codebase.
@@ -68,9 +71,9 @@ Work on GitHub issue `$ARGUMENTS` with human approval gates before implementatio
 
 ## Phase 7: Push and Verify CI
 
-1. Run pre-push verification per the ci-integration skill (lint, typecheck, tests). Fix any failures before pushing.
+1. Run pre-push verification per the local-verification skill (lint, typecheck, tests). Fix any failures before pushing.
 2. Push the branch to remote.
-3. Monitor CI status per the ci-integration skill. If CI fails, read the failure logs, fix locally, and push again. Do not proceed until CI passes.
+3. Monitor CI status per the cicd-bestpractice skill. If CI fails, read the failure logs, fix locally, and push again. Do not proceed until CI passes.
 
 ## Phase 8: Update Issue and Create PR
 

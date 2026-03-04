@@ -167,7 +167,7 @@ If three or more fix attempts have failed, this is likely an architectural probl
 
 When debugging occurs during plan execution (do-issue workflows):
 
-1. **Do not skip the failing step** — the task-decomposition skill requires verification to pass before moving on
+1. **Do not skip the failing step** — the plan-execution skill requires verification to pass before moving on
 2. **Do not mark the step as complete** — the issue plan comment should not be checked off until the step genuinely works
 3. **Log diagnostic findings** — if the bug reveals a design issue, update the solution design comment on the issue
 4. **Time-box debugging** — if Phase 1 takes more than 30 minutes without progress, escalate to the user rather than continuing to investigate alone

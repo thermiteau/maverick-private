@@ -78,16 +78,31 @@ Cross-reference every factual claim with the source code. If you cannot verify s
 - **Integration points**: How components communicate and depend on each other
 - **Data flow**: How data moves through the system
 - **Architectural patterns**: Design patterns employed and their rationale
+- **Accessibility patterns**: ARIA attribute usage, focus management, keyboard navigation, screen reader support, and WCAG compliance level. Especially important for government or public-sector projects.
+- **Validation and business rules**: Form validation logic, required field rules, conditional visibility, and domain constraints that the application enforces
 - **Mermaid diagrams**: Every document describing interactions or flows must include at least one diagram
 
 ### Exclude
 
-- **Code examples**: Describe behaviour in prose, not code snippets
+- **Implementation code**: No function bodies, algorithms, or internal logic as code blocks
 - **Infrastructure configuration**: No CDK, Terraform, Docker Compose, or config file content
-- **CLI commands**: No terminal commands or deployment scripts
+- **CLI commands**: No terminal commands or deployment scripts (see exception below)
 - **API endpoint definitions**: No route paths, request/response schemas, or curl examples
 
-If tempted to include any of the above, describe the concept or behaviour in prose instead.
+### Include as Structured Tables (Not Code Blocks)
+
+- **Component/module public API**: Props, parameters, exported types, and return values — documented as tables, not code snippets
+- **Context/hook API surface**: What a context provider or hook exposes to consumers
+
+### Optional: Developer Onboarding Section
+
+When documenting a full project (not a single component), include a brief onboarding section in `architecture-overview.md` or a dedicated `getting-started.md`:
+
+- Prerequisites (runtime versions, package manager)
+- Install and run commands
+- Key scripts (build, test, lint)
+
+Keep to under 20 lines. This is the one context where CLI commands are acceptable.
 
 ## Document Structure
 
@@ -146,6 +161,17 @@ Docs are loaded into LLM context alongside code, conversation history, and tool 
 | Medium (feature, service)           | Full document structure (200-500 lines)            |
 | Large (cross-cutting, architecture) | Split into multiple focused documents              |
 
+### Within a Document
+
+Scale section depth to component complexity. Indicators that a component needs deeper coverage:
+
+- File exceeds 300 lines
+- Contains business/domain logic (rule engines, calculations, transformations)
+- Has multiple distinct output modes (e.g., screen rendering, PDF export, print view)
+- Serves as an aggregation point for data from multiple sources
+
+For these components, document each distinct responsibility separately rather than summarising the whole.
+
 ## Mermaid Diagram Standards
 
 Use diagrams to visualise:
@@ -175,9 +201,11 @@ Before finalising documentation:
 
 - [ ] All factual claims verified against source code
 - [ ] Mermaid diagrams render correctly (valid syntax)
-- [ ] No code examples, config snippets, or CLI commands included
+- [ ] No implementation code, config snippets, or CLI commands included (API surface tables are acceptable)
 - [ ] Cross-references use correct relative paths
 - [ ] Document is under 500 lines (split if larger)
 - [ ] YAML frontmatter present with title, scope, relates-to, last-verified
 - [ ] `docs/technical/index.md` updated if this is a new document
 - [ ] Bullet points and tables used instead of prose where possible
+- [ ] All public exports from documented modules are covered (check for multiple exports per file)
+- [ ] Numbering, terminology, and facts are consistent across all documents in the set

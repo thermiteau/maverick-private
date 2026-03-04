@@ -3,8 +3,8 @@ name: code-reviewer
 description: Autonomous code reviewer that performs two-stage review — spec compliance first, then code quality. Dispatched after completing implementation steps or before creating PRs.
 color: yellow
 skills:
-  - logging-standards
-  - alerting-standards
+  - logging-bestpractice
+  - alerting-bestpractice
   - scope-boundaries
 ---
 

@@ -25,18 +25,18 @@ Before applying these standards, load the project-specific alerting implementati
 digraph lookup {
     "docs/maverick/skills/alerting/SKILL.md exists?" [shape=diamond];
     "Read and use alongside these standards" [shape=box];
-    "Invoke generate-project-skill" [shape=box];
+    "Invoke upskill" [shape=box];
     "Read generated skill" [shape=box];
 
     "docs/maverick/skills/alerting/SKILL.md exists?" -> "Read and use alongside these standards" [label="yes"];
-    "docs/maverick/skills/alerting/SKILL.md exists?" -> "Invoke generate-project-skill" [label="no"];
-    "Invoke generate-project-skill" -> "Read generated skill";
+    "docs/maverick/skills/alerting/SKILL.md exists?" -> "Invoke upskill" [label="no"];
+    "Invoke upskill" -> "Read generated skill";
     "Read generated skill" -> "Read and use alongside these standards";
 }
 ```
 
 1. Check for `docs/maverick/skills/alerting/SKILL.md`
-2. If missing, invoke the `generate-project-skill` skill with:
+2. If missing, invoke the `upskill` skill with:
    - topic: alerting
    - scan hints:
      - dependencies: @aws-sdk/client-sns, @pagerduty, @opsgenie, nodemailer, sentry

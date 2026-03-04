@@ -255,18 +255,18 @@ Before applying these standards, load the project-specific logging implementatio
 digraph lookup {
     "docs/maverick/skills/logging/SKILL.md exists?" [shape=diamond];
     "Read and use alongside these standards" [shape=box];
-    "Invoke generate-project-skill" [shape=box];
+    "Invoke upskill" [shape=box];
     "Read generated skill" [shape=box];
 
     "docs/maverick/skills/logging/SKILL.md exists?" -> "Read and use alongside these standards" [label="yes"];
-    "docs/maverick/skills/logging/SKILL.md exists?" -> "Invoke generate-project-skill" [label="no"];
-    "Invoke generate-project-skill" -> "Read generated skill";
+    "docs/maverick/skills/logging/SKILL.md exists?" -> "Invoke upskill" [label="no"];
+    "Invoke upskill" -> "Read generated skill";
     "Read generated skill" -> "Read and use alongside these standards";
 }
 ```
 
 1. Check for `docs/maverick/skills/logging/SKILL.md`
-2. If missing, invoke the `generate-project-skill` skill with:
+2. If missing, invoke the `upskill` skill with:
    - topic: logging
    - scan hints:
      - dependencies: pino, winston, bunyan, log4js, morgan, structlog, loguru, slog, tracing
