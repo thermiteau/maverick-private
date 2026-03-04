@@ -2,6 +2,7 @@
 name: mav-bp-logging
 description: Logging conventions for backend and frontend applications. Covers log levels, structured logging, centralised aggregation, and project logging guidance. Applied when writing or reviewing code that includes logging.
 user-invocable: false
+disable-model-invocation: false
 ---
 
 # Logging Standards

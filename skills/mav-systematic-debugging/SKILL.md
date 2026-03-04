@@ -2,6 +2,7 @@
 name: mav-systematic-debugging
 description: Use when encountering any bug, test failure, or unexpected behaviour during implementation. Requires root cause investigation before proposing fixes.
 user-invocable: false
+disable-model-invocation: true
 ---
 
 # Systematic Debugging

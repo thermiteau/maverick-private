@@ -1,7 +1,8 @@
 ---
 name: pullrequest-review
 description: How to process code review feedback — verify before implementing, push back when wrong, clarify before acting on partial understanding. Applied when receiving review from the code-reviewer agent or human reviewers.
-user-invocable: true
+user-invocable: false
+disable-model-invocation: false
 ---
 
 # Receiving Code Review

@@ -1,7 +1,11 @@
-.PHONY: generate-skills generate-topics build
+.PHONY: generate-skills generate-agents generate-topics build
 
 generate-skills: ## Render all SKILL.md files from templates
 	rm -rf skills/*/SKILL.md
+	cd src && python -m skills.registry
+
+generate-agents: ## Render all agent .md files from templates
+	rm -f agents/*.md
 	cd src && python -m skills.registry
 
 generate-topics: ## Generate skills/upskill/topics.json from upskill config

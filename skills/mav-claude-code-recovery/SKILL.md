@@ -1,7 +1,8 @@
 ---
 name: mav-claude-code-recovery
 description: Patterns for Claude Code workflow resilience — state persistence, crash recovery, command failure handling, subagent failure handling, and artefact durability. Not about application-level error handling.
-user-invokable: false
+user-invocable: false
+disable-model-invocation: false
 ---
 
 # Claude Code Error Handling and Recovery

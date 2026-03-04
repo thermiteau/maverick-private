@@ -2,6 +2,7 @@
 name: tech-docs
 description: Create or update technical documentation for a project. Covers architecture, service interactions, data flows, and design decisions. Produces professional markdown with Mermaid diagrams.
 user-invocable: true
+disable-model-invocation: false
 ---
 
 # Technical Documentation

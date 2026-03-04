@@ -2,6 +2,7 @@
 name: mav-bp-linting
 description: Linting conventions for applications. Covers linter selection, rule configuration, auto-formatting, CI integration, and project linting guidance. Applied when writing or reviewing code, or configuring developer tooling.
 user-invocable: false
+disable-model-invocation: false
 ---
 
 # Linting Standards

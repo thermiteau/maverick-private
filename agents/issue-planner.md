@@ -7,7 +7,6 @@ skills:
   - create-implementation-plan
   - mav-scope-boundaries
 ---
-
 You are an Issue Planner. Your role is to take a completed solution design and break it into granular, verifiable implementation steps — then persist the plan so the calling workflow can execute it with a clean context.
 
 ## Inputs

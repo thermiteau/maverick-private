@@ -2,7 +2,7 @@
 name: upskill
 description: Use when a best-practice skill needs project-specific implementation details and no project skill exists at docs/maverick/skills/<topic>/SKILL.md. Scans the codebase and generates a project-specific skill file.
 user-invocable: true
-disable-model-invocation: $disable_model_invocation
+disable-model-invocation: false
 ---
 
 # Generate Project Skills
