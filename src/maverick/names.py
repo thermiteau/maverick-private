@@ -1,4 +1,8 @@
-"""Centralised skill name constants for template generators."""
+"""Centralised skill and agent name constants for template generators."""
+
+# ---------------------------------------------------------------------------
+# Skills
+# ---------------------------------------------------------------------------
 
 DO_ISSUE_SOLO = "do-issue-solo"
 MAV_BP_ALERTING = "mav-bp-alerting"
@@ -52,4 +56,22 @@ ALL_SKILL_NAMES = {
     PULLREQUEST_REVIEW,
     TECH_DOCS,
     UPSKILL,
+}
+
+# ---------------------------------------------------------------------------
+# Agents
+# ---------------------------------------------------------------------------
+
+AGENT_CODE_REVIEWER = "code-reviewer"
+AGENT_ISSUE_ANALYST = "issue-analyst"
+AGENT_ISSUE_PLANNER = "issue-planner"
+AGENT_MAVERICK = "maverick"
+AGENT_TECH_DOCS_WRITER = "tech-docs-writer"
+
+ALL_AGENT_NAMES = {
+    AGENT_CODE_REVIEWER,
+    AGENT_ISSUE_ANALYST,
+    AGENT_ISSUE_PLANNER,
+    AGENT_MAVERICK,
+    AGENT_TECH_DOCS_WRITER,
 }

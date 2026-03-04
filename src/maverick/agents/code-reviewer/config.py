@@ -1,8 +1,8 @@
 from maverick.models import AgentConfig
-from maverick.names import MAV_BP_ALERTING, MAV_BP_LOGGING, MAV_SCOPE_BOUNDARIES
+from maverick.names import AGENT_CODE_REVIEWER, MAV_BP_ALERTING, MAV_BP_LOGGING, MAV_SCOPE_BOUNDARIES
 
 CONFIG = AgentConfig(
-    name="code-reviewer",
+    name=AGENT_CODE_REVIEWER,
     description=(
         "Autonomous code reviewer that performs two-stage review — spec compliance"
         " first, then code quality. Dispatched after completing implementation steps"

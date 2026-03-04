@@ -1,8 +1,8 @@
 from maverick.models import AgentConfig
-from maverick.names import MAV_SCOPE_BOUNDARIES, TECH_DOCS
+from maverick.names import AGENT_TECH_DOCS_WRITER, MAV_SCOPE_BOUNDARIES, TECH_DOCS
 
 CONFIG = AgentConfig(
-    name="tech-docs-writer",
+    name=AGENT_TECH_DOCS_WRITER,
     description=(
         "Autonomous technical documentation writer. Dispatched when documentation"
         " needs to be created or updated — architecture, services, data flows, design"

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import shutil
 from pathlib import Path
 from string import Template
 from typing import Any
@@ -93,13 +94,23 @@ def render_skill(
     return output_path
 
 
+def _clean_skills_output(output_dir: Path) -> None:
+    """Remove all skill subdirectories from the output directory."""
+    if not output_dir.is_dir():
+        return
+    for child in output_dir.iterdir():
+        if child.is_dir():
+            shutil.rmtree(child)
+
+
 def render_all_skills(
     global_config: GlobalConfig = GLOBAL_CONFIG,
     templates_dir: Path = SKILLS_TEMPLATES_DIR,
     output_dir: Path = SKILLS_OUTPUT_DIR,
 ) -> list[Path]:
-    """Discover all skill configs and render their templates."""
+    """Discover all skill configs, clean output directory, and render."""
     skills = discover_skills(templates_dir)
+    _clean_skills_output(output_dir)
     return [render_skill(s, global_config, templates_dir, output_dir) for s in skills]
 
 
@@ -166,12 +177,21 @@ def render_agent(
     return output_path
 
 
+def _clean_agents_output(output_dir: Path) -> None:
+    """Remove all agent .md files from the output directory."""
+    if not output_dir.is_dir():
+        return
+    for child in output_dir.glob("*.md"):
+        child.unlink()
+
+
 def render_all_agents(
     templates_dir: Path = AGENTS_TEMPLATES_DIR,
     output_dir: Path = AGENTS_OUTPUT_DIR,
 ) -> list[Path]:
-    """Discover all agent configs and render their .md files."""
+    """Discover all agent configs, clean output directory, and render."""
     agents = discover_agents(templates_dir)
+    _clean_agents_output(output_dir)
     return [render_agent(a, templates_dir, output_dir) for a in agents]
 
 

@@ -1,8 +1,8 @@
 from maverick.models import AgentConfig
-from maverick.names import CREATE_IMPLEMENTATION_PLAN, MAV_GITHUB_ISSUE_WORKFLOW, MAV_SCOPE_BOUNDARIES
+from maverick.names import AGENT_ISSUE_PLANNER, CREATE_IMPLEMENTATION_PLAN, MAV_GITHUB_ISSUE_WORKFLOW, MAV_SCOPE_BOUNDARIES
 
 CONFIG = AgentConfig(
-    name="issue-planner",
+    name=AGENT_ISSUE_PLANNER,
     description=(
         "Takes a solution design and produces an ordered implementation plan."
         " Dispatched by do-issue-solo and do-issue-guided as a subagent so that"
