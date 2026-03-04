@@ -6,7 +6,7 @@
   },
   {
     "topic": "alerting",
-    "prompt": "Identify how alerting is implemented in this codebase. Look for alert mechanisms, notification services, severity levels, and alert routing. Use the alertingbest practice skill to guide the implementation.",
+    "prompt": "Identify how alerting is implemented in this codebase. Look for alert mechanisms, notification services, severity levels, and alert routing. Use the alerting best practice skill to guide the implementation.",
     "bestPracticeSkill": "skills/mav-bp-alerting/SKILL.md"
   },
   {
