@@ -12,6 +12,10 @@ user-invocable: true
 
 Work on GitHub issue `$ARGUMENTS` with human approval gates before implementation begins. Follow every phase in order. Do not skip phases.
 
+## Before You Begin
+
+If `$ARGUMENTS` is empty or not a valid issue number, ask the user for the issue number before proceeding. Do not attempt any phase without it.
+
 ## Phase 1-2: Understand the Issue and Solution Design (subagent)
 
 Run Phases 1 and 2 as a subagent to keep the main context window clean for implementation.
