@@ -11,7 +11,8 @@ class SkillConfig:
 
     name: str
     depends_on: list[str] = field(default_factory=list)
-    extra_context: dict[str, str] = field(default_factory=dict)
+    user_invocable: bool = False
+    disable_model_invocation: bool = True
 
 
 @dataclass

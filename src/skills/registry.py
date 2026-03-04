@@ -42,7 +42,8 @@ def render_skill(
     context: dict[str, str] = {
         **global_config.extra_context,
         "SKILL_NAME": skill.name,
-        **skill.extra_context,
+        "USER_INVOCABLE": skill.user_invocable,
+        "DISABLE_MODEL_INVOCATION": skill.disable_model_invocation,
     }
     if skill.depends_on:
         context["DEPENDS_ON"] = ", ".join(skill.depends_on)

@@ -18,6 +18,8 @@ from skills.names import (
 
 CONFIG = SkillConfig(
     name=DO_ISSUE_SOLO,
+    user_invocable=True,
+    disable_model_invocation=False,
     depends_on=[
         MAV_SCOPE_BOUNDARIES,
         MAV_GIT_WORKFLOW,

@@ -3,4 +3,7 @@ from skills.names import MAV_BP_INTEGRATION_TESTING
 
 CONFIG = SkillConfig(
     name=MAV_BP_INTEGRATION_TESTING,
+    user_invocable=False,
+    disable_model_invocation=False,
+    depends_on=[],
 )

@@ -11,6 +11,9 @@ from skills.names import (
 
 CONFIG = SkillConfig(
     name=UPSKILL,
+    user_invocable=True,
+    disable_model_invocation=False,
+    depends_on=[],
 )
 
 TOPICS: list[TopicConfig] = [

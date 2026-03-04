@@ -3,4 +3,7 @@ from skills.names import MAV_BP_CICD_GITHUB
 
 CONFIG = SkillConfig(
     name=MAV_BP_CICD_GITHUB,
+    user_invocable=False,
+    disable_model_invocation=False,
+    depends_on=[],
 )
